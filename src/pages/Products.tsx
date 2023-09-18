@@ -19,7 +19,7 @@ export default function Products() {
   //! Dummy Data
 
   const status = true;
-  const priceRange = 100;
+  const priceRange = 2023;
 
   //! **
 
@@ -43,24 +43,24 @@ export default function Products() {
     <div className="grid grid-cols-12 max-w-7xl mx-auto relative ">
       <div className="col-span-3 z mr-10 space-y-5 border rounded-2xl border-gray-200/80 p-5 self-start sticky top-16 h-[calc(100vh-80px)]">
         <div>
-          <h1 className="text-2xl uppercase">Availability</h1>
+          <h1 className="text-2xl ">Genere</h1>
           <div className="flex items-center space-x-2 mt-3">
             <Switch id="in-stock" />
-            <Label htmlFor="in-stock">In stock</Label>
+            <Label htmlFor="in-stock">on process</Label>
           </div>
         </div>
         <div className="space-y-3 ">
-          <h1 className="text-2xl uppercase">Price Range</h1>
+          <h1 className="text-2xl ">Publication Year</h1>
           <div className="max-w-xl">
             <Slider
-              defaultValue={[150]}
-              max={150}
-              min={0}
+              defaultValue={[2016]}
+              max={2023}
+              min={2000}
               step={1}
               onValueChange={(value) => handleSlider(value)}
             />
           </div>
-          <div>From 0$ To {priceRange}$</div>
+          <div>From 2000 To {priceRange}</div>
         </div>
       </div>
       <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">

@@ -11,15 +11,14 @@ import {
 } from '../components/ui/dropdown-menu';
 import { HiOutlineSearch } from 'react-icons/hi';
 import Cart from '../components/Cart';
-import logo from '../assets/images/novelnest logo.jpg';
 
 export default function Navbar() {
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
-        <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto ">
+        <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto">
           <div>
-            <img className="h-36 w-36 p-6 rounded-md" src={logo} alt="log" />
+            <h3 className='text-xl text-green-400 font-bold'>NOVEL_NEST</h3>
           </div>
           <div>
             <ul className="flex items-center">
@@ -30,12 +29,22 @@ export default function Navbar() {
               </li>
               <li>
                 <Button variant="link" asChild>
-                  <Link to="/products">Products</Link>
+                  <Link to="/products">All Books</Link>
+                </Button>
+              </li>
+              {/* <li>
+                <Button variant="link" asChild>
+                  <Link to="/checkout">Checkout</Link>
+                </Button>
+              </li> */}
+              <li>
+                <Button variant="link" asChild>
+                  <Link to="/login">Sign-In</Link>
                 </Button>
               </li>
               <li>
                 <Button variant="link" asChild>
-                  <Link to="/checkout">Checkout</Link>
+                  <Link to="/signup">Sign-up</Link>
                 </Button>
               </li>
               <li>
@@ -46,7 +55,7 @@ export default function Navbar() {
               <li>
                 <Cart />
               </li>
-              <li className="ml-5">
+              {/* <li className="ml-5">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="outline-none">
                     <Avatar>
@@ -71,7 +80,7 @@ export default function Navbar() {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
