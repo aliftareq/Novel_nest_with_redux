@@ -1,25 +1,16 @@
+import { useGetBooksQuery } from '@/Redux/Features/Books/BookApi';
 import ProductCard from '@/components/ProductCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/components/ui/use-toast';
-import { IProduct } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
-
+import { IBook } from '@/types/globalTypes';
 export default function Products() {
-  const [data, setData] = useState<IProduct[]>([]);
-  useEffect(() => {
-    fetch('./data.json')
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
 
-  const { toast } = useToast();
-
+  const {data} = useGetBooksQuery(undefined)
   //! Dummy Data
 
   const status = true;
-  const priceRange = 2023;
+  const PublicationYear = 2023;
 
   //! **
 
@@ -27,45 +18,43 @@ export default function Products() {
     console.log(value);
   };
 
-  let productsData;
+  const productsData = data?.data;
 
-  if (status) {
-    productsData = data.filter(
-      (item) => item.status === true && item.price < priceRange
-    );
-  } else if (priceRange > 0) {
-    productsData = data.filter((item) => item.price < priceRange);
-  } else {
-    productsData = data;
-  }
+  // if (status) {
+  //   productsData = data?.data?.filter(
+  //     (item:IBook) => item.Availability === true 
+  //   );
+  // }  else {
+  //   productsData = data?.data;
+  // }
 
   return (
     <div className="grid grid-cols-12 max-w-7xl mx-auto relative ">
       <div className="col-span-3 z mr-10 space-y-5 border rounded-2xl border-gray-200/80 p-5 self-start sticky top-16 h-[calc(100vh-80px)]">
         <div>
-          <h1 className="text-2xl ">Genere</h1>
+          <h1 className="text-2xl ">Availability</h1>
           <div className="flex items-center space-x-2 mt-3">
             <Switch id="in-stock" />
-            <Label htmlFor="in-stock">on process</Label>
+            <Label htmlFor="in-stock">In stock</Label>
           </div>
         </div>
         <div className="space-y-3 ">
           <h1 className="text-2xl ">Publication Year</h1>
           <div className="max-w-xl">
             <Slider
-              defaultValue={[2016]}
+              defaultValue={[1937]}
               max={2023}
-              min={2000}
+              min={1800}
               step={1}
               onValueChange={(value) => handleSlider(value)}
             />
           </div>
-          <div>From 2000 To {priceRange}</div>
+          <div>From 1800 To {PublicationYear}</div>
         </div>
       </div>
-      <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">
-        {productsData?.map((product) => (
-          <ProductCard product={product} />
+      <div className="col-span-9 grid grid-cols-4 gap-10 pb-20">
+        {productsData?.map((book:IBook) => (
+          <ProductCard book={book} />
         ))}
       </div>
     </div>

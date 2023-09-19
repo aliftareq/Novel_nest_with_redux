@@ -12,12 +12,12 @@ import {
   HiOutlineTrash,
 } from 'react-icons/hi';
 import { Button } from './ui/button';
-import { IProduct } from '@/types/globalTypes';
+import { IBook } from '@/types/globalTypes';
 
 export default function Cart() {
   //! Dummy data
 
-  const products: IProduct[] = [];
+  const products: IBook[] = [];
   const total = 0;
 
   //! **

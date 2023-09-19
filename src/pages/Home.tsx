@@ -1,18 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import Footer from '@/layouts/Footer';
-import { useEffect, useState } from 'react';
-import { IProduct } from '@/types/globalTypes';
-import { useToast } from '@/components/ui/use-toast';
+import { IBook } from '@/types/globalTypes';
 import ProductCard from '@/components/ProductCard';
+import { useGetBooksQuery } from '@/Redux/Features/Books/BookApi';
 
 export default function Home() {
-  const [data, setData] = useState<IProduct[]>([]);
-  useEffect(() => {
-    fetch('./data.json')
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+  const {data} = useGetBooksQuery(undefined)
   return (
     <>
       {/* 1st part  */}
@@ -39,8 +33,8 @@ export default function Home() {
             Let's get lost in the realm of books
         </h1>
         <div className="col-span-9 grid grid-cols-5 gap-10 pb-20">
-          {data?.map((product) => (
-            <ProductCard product={product} />
+          {data?.data?.map((book:IBook) => (
+            <ProductCard book={book} />
           ))}
         </div>
         <div className="flex flex-col items-center justify-center">
