@@ -48,7 +48,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const userSlice = createSlice({
-  name: 'product',
+  name: 'Books',
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<string | null>) => {

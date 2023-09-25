@@ -1,18 +1,22 @@
 import { Link } from 'react-router-dom';
-import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '../components/ui/button';
-import { DropdownMenuSeparator } from '../components/ui/dropdown-menu';
-import { DropdownMenuLabel } from '../components/ui/dropdown-menu';
-import {
-  DropdownMenuItem,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-} from '../components/ui/dropdown-menu';
 import { HiOutlineSearch } from 'react-icons/hi';
 import Cart from '../components/Cart';
+import { useAppDispatch, useAppSelector } from '@/Redux/hook';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+import { setUser } from '@/Redux/Features/user/userSlice';
 
 export default function Navbar() {
+  const dispatch = useAppDispatch()
+
+  const  {user} = useAppSelector(state => state.user)
+
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      dispatch(setUser(null))
+    })
+  }
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
@@ -34,12 +38,10 @@ export default function Navbar() {
                   <Link to="/products">All Books</Link>
                 </Button>
               </li>
-              {/* <li>
-                <Button variant="link" asChild>
-                  <Link to="/checkout">Checkout</Link>
-                </Button>
-              </li> */}
-              <li>
+              {
+                !user.email ?
+                <>
+                  <li>
                 <Button variant="link" asChild>
                   <Link to="/login">Sign-In</Link>
                 </Button>
@@ -49,6 +51,21 @@ export default function Navbar() {
                   <Link to="/signup">Sign-up</Link>
                 </Button>
               </li>
+                </>
+                :
+                <>
+                  <li>
+                    <Button variant="link" asChild>
+                      <Link to="/checkout">Add a book</Link>
+                    </Button>
+                  </li>
+                  <li>
+                    <Button onClick={handleLogout} variant="outline" asChild>
+                      <Link to="/">LogOut</Link>
+                    </Button>
+                  </li>
+                </>
+              }
               <li>
                 <Button variant="ghost">
                   <HiOutlineSearch size="25" />
@@ -57,32 +74,6 @@ export default function Navbar() {
               <li>
                 <Cart />
               </li>
-              {/* <li className="ml-5">
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="outline-none">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer">
-                      Profile
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Team
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Subscription
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </li> */}
             </ul>
           </div>
         </div>
