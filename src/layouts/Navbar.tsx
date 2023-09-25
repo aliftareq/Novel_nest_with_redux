@@ -17,9 +17,11 @@ export default function Navbar() {
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto">
+          <Link to='/'>
           <div>
             <h3 className='text-xl text-green-400 font-bold'>NOVEL_NEST</h3>
           </div>
+          </Link>
           <div>
             <ul className="flex items-center">
               <li>
