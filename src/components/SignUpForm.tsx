@@ -8,8 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { useAppDispatch } from '@/Redux/hook';
+import { useAppDispatch, useAppSelector } from '@/Redux/hook';
 import { createUser } from '@/Redux/Features/user/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -24,8 +25,18 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<SignupFormInputs>();
-
   const dispatch = useAppDispatch()
+
+  const {user,isLoading} = useAppSelector((state)=>state.user)
+  
+
+  const navigate = useNavigate()
+
+  React.useEffect(()=>{
+    if(user.email && !isLoading){
+      navigate('/')
+    }
+  },[user.email, isLoading, navigate])
   const onSubmit = (data: SignupFormInputs) => {
     console.log(data);
     dispatch(createUser({email:data.email,password:data.password}))

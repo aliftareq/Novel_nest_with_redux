@@ -26,7 +26,7 @@ const routes = createBrowserRouter([
         element: <BooksDetails />,
       },
       {
-        path: '/checkout',
+        path: '/addbook',
         element: <Checkout />,
       },
     ],
