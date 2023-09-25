@@ -26,7 +26,11 @@ export default function Signup() {
             }}
           />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            <img className="h-8" src={logo} alt="" />
+            <Link to='/'>
+              <div>
+                <h3 className='text-xl text-green-400 font-bold'>NOVEL_NEST</h3>
+              </div>
+            </Link>
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2"></blockquote>
