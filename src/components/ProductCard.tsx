@@ -22,12 +22,12 @@ export default function ProductCard({ book }: IProps) {
         </Link>
         <p>Author: {book?.Author}</p>
         <p>Genre: {book?.Genre}</p>
-        <p className="text-sm">
+        {/* <p className="text-sm">
           Availability: 
           <span className={`font-semibold ${book?.Availability ? 'text-green-500' : 'text-red-500'}`}>
           {book?.Availability ? ' In stock' : ' Out of stock'}
           </span>
-        </p>
+        </p> */}
         <p className="text-sm">Publication Date: {book?.PublicationDate}</p>
         <Button variant="default" onClick={() => handleAddProduct(book)}>
           Add to cart

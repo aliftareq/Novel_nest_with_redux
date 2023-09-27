@@ -2,11 +2,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type IBookFilter = {
   status: boolean;
-  priceRange: number;
+  PublicationDate: number;
+  Genre: string | null;
 };
 const initialState: IBookFilter = {
   status: false,
-  priceRange: 150,
+  PublicationDate: 1971,
+  Genre: null,
 };
 
 const bookSlice = createSlice({
@@ -16,12 +18,15 @@ const bookSlice = createSlice({
     toggleState: (state) => {
       state.status = !state.status;
     },
-    setPriceRange: (state, action: PayloadAction<number>) => {
-      state.priceRange = action.payload;
+    setPublicationDate: (state, action: PayloadAction<number>) => {
+      state.PublicationDate = action.payload;
+    },
+    setGenre: (state, action: PayloadAction<string>) => {
+      state.Genre = action.payload;
     },
   },
 });
 
-export const { toggleState, setPriceRange } = bookSlice.actions;
+export const { toggleState, setPublicationDate, setGenre } = bookSlice.actions;
 
 export default bookSlice.reducer;
