@@ -7,7 +7,7 @@ import Books from '@/pages/Books';
 import Signup from '@/pages/Signup';
 import BooksDetails from '@/pages/BookDetails';
 import PrivateRoute from './privateRoutes';
-import AddNewBook from '@/pages/addNewBook';
+import AddNewBook from '@/pages/AddNewBook';
 
 const routes = createBrowserRouter([
   {

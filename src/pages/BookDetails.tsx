@@ -21,19 +21,11 @@ export default function ProductDetails() {
           <p className="text-xl">Author: {book?.Author}</p>
           <p className="text-xl">Genre: {book?.Genre}</p>
           <p className="text-xl">Publication Date: {book?.PublicationDate}</p>
-          <ul className="space-y-1 text-lg">
-            {/* {book?.features?.map((feature) => (
-              <li key={feature}>{feature}</li>
-            ))} */}
-          </ul>
           <Button>Edit</Button>
           <Button className="mx-2 bg-red-600 hover:bg-red-500">Delete</Button>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto items-center border-b border-gray-300">
-          <h1 className='text-2xl pt-10 font-semibold'>Add Your review about this book here:</h1>
-          <ProductReview id={id!}/>
-      </div>
+      <ProductReview id={id!}/>
     </>
   );
 }
