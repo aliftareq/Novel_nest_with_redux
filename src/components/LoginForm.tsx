@@ -34,7 +34,6 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const from = location?.state?.from?.pathname || '/'
-  console.log(from);
 
   
 

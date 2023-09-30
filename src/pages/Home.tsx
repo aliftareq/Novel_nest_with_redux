@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard';
 import { useGetBooksQuery } from '@/Redux/Features/Books/BookApi';
 
 export default function Home() {
-  const {data} = useGetBooksQuery(undefined)
+  const {data} = useGetBooksQuery('')
   return (
     <>
       {/* 1st part  */}

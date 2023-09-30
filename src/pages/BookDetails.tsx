@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useSingleBookQuery } from '@/Redux/Features/Books/BookApi';
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
@@ -29,7 +30,10 @@ export default function ProductDetails() {
           <Button className="mx-2 bg-red-600 hover:bg-red-500">Delete</Button>
         </div>
       </div>
-      <ProductReview />
+      <div className="max-w-7xl mx-auto items-center border-b border-gray-300">
+          <h1 className='text-2xl pt-10 font-semibold'>Add Your review about this book here:</h1>
+          <ProductReview id={id!}/>
+      </div>
     </>
   );
 }

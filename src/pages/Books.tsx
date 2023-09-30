@@ -26,8 +26,6 @@ export default function Products() {
   const {data} = useGetBooksQuery(searchTerm,{
     refetchOnMountOrArgChange: true,
   })
-
-  console.log('data', data);
   
   const  {PublicationDate, Genre} = useAppSelector(state => state.bookFilter)
   const dispatch = useAppDispatch()
