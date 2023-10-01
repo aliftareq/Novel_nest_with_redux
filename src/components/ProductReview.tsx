@@ -5,7 +5,7 @@ import { Textarea } from './ui/textarea';
 import { FiSend } from 'react-icons/fi';
 import {  useGetReviewsQuery, usePostReviewsMutation } from '@/Redux/Features/Books/BookApi';
 import { useAppSelector } from '@/Redux/hook';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   id: string;
@@ -25,7 +25,6 @@ export default function ProductReview({ id }: IProps) {
   //function for get reviews
   const { data } = useGetReviewsQuery(id, {
     refetchOnMountOrArgChange: true,
-    // pollingInterval: 10000,
   });
   
   console.log('reviews data', data);

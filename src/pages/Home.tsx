@@ -7,6 +7,7 @@ import { useGetBooksQuery } from '@/Redux/Features/Books/BookApi';
 
 export default function Home() {
   const {data} = useGetBooksQuery('')
+  const newdata = data?.data?.slice(-10).reverse()
   return (
     <>
       {/* 1st part  */}
@@ -33,7 +34,7 @@ export default function Home() {
             Let's get lost in the realm of books
         </h1>
         <div className="col-span-9 grid grid-cols-5 gap-10 pb-20">
-          {data?.data?.map((book:IBook) => (
+          {newdata?.map((book:IBook) => (
             <ProductCard book={book} />
           ))}
         </div>
