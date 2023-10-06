@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddNewBook() {
 
@@ -28,8 +29,13 @@ export default function AddNewBook() {
   const [Image, setImage] = useState<string>('');
 
   //function for post reviews
-  const [postBook] = usePostBookMutation();
+  const [postBook, { data }] = usePostBookMutation();
+  console.log(data);
 
+  // adding a toast 
+  if(data?.acknowledged){
+    toast.success('Successfully Added to the booklist!')
+  }
   // adding books function
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -79,6 +85,7 @@ export default function AddNewBook() {
 
   return (
     <div className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary">
+      <div><Toaster/></div>
       <div className="max-w-6xl w-full">
         <h1 className="text-5xl font-semibold text-center my-5">Add Your Book details here.</h1>
         {/* form data here */}
