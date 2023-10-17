@@ -2,7 +2,7 @@
 import { useSingleBookQuery } from '@/Redux/Features/Books/BookApi';
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export default function ProductDetails() {
           <p className="text-xl">Author: {book?.Author}</p>
           <p className="text-xl">Genre: {book?.Genre}</p>
           <p className="text-xl">Publication Date: {book?.PublicationDate}</p>
-          <Button>Edit</Button>
+          <Link to={`/edit-book/${id}`}><Button>Edit</Button></Link>
           <Button className="mx-2 bg-red-600 hover:bg-red-500">Delete</Button>
         </div>
       </div>
