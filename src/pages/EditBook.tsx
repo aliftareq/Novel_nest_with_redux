@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 export default function EditBook() {
@@ -87,7 +87,6 @@ export default function EditBook() {
 
   return (
     <div className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary">
-      <div><Toaster/></div>
       <div className="max-w-6xl w-full">
         <h1 className="text-5xl font-semibold text-center my-5">Edit Your Book details here.</h1>
         {/* form data here */}
