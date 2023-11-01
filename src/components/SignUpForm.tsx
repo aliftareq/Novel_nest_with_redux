@@ -11,6 +11,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { useAppDispatch, useAppSelector } from '@/Redux/hook';
 import { createUser } from '@/Redux/Features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { usePostUserMutation } from '@/Redux/Features/user/userApi';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -20,6 +21,10 @@ interface SignupFormInputs {
 }
 
 export function SignupForm({ className, ...props }: UserAuthFormProps) {
+
+  const [postUser, { data }] = usePostUserMutation();
+  console.log(data);
+
   const {
     register,
     handleSubmit,
@@ -40,6 +45,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
   const onSubmit = (data: SignupFormInputs) => {
     console.log(data);
     dispatch(createUser({email:data.email,password:data.password}))
+    postUser({email:data.email})
   };
 
   return (

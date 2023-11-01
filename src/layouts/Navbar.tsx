@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { HiOutlineSearch } from 'react-icons/hi';
-import Cart from '../components/Cart';
+import Wishlist from '../components/Wishlist';
 import { useAppDispatch, useAppSelector } from '@/Redux/hook';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
@@ -10,6 +10,7 @@ import { setUser } from '@/Redux/Features/user/userSlice';
 export default function Navbar() {
   const dispatch = useAppDispatch()
 
+  const  {products} = useAppSelector(state => state.cart)
   const  {user} = useAppSelector(state => state.user)
 
   const handleLogout = () => {
@@ -72,7 +73,14 @@ export default function Navbar() {
                 </Button>
               </li>
               <li>
-                <Cart />
+                <div className="relative inline-block">
+                  <div className="text-black w-14 h-14 rounded-full flex items-center justify-center">
+                    <Wishlist />
+                  </div>
+                  <span className="absolute top-0 right-0 bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
+                    {products?.length}
+                  </span>
+                </div>
               </li>
             </ul>
           </div>

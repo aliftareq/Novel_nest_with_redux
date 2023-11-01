@@ -2,13 +2,18 @@ import { IBook } from '@/types/globalTypes';
 import { toast } from './ui/use-toast';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '@/Redux/hook';
+import { addToCart, } from '@/Redux/Features/wishlist/wishListSlice';
 
 interface IProps {
   book: IBook;
 }
 
 export default function ProductCard({ book }: IProps) {
-  const handleAddProduct = (book: IBook) => {
+
+  const dispatch = useAppDispatch()
+  const handleAddProduct = (product: IBook) => {
+    dispatch(addToCart(product))
     toast({
       description: 'Product Added',
     });
@@ -22,15 +27,9 @@ export default function ProductCard({ book }: IProps) {
         </Link>
         <p>Author: {book?.Author}</p>
         <p>Genre: {book?.Genre}</p>
-        {/* <p className="text-sm">
-          Availability: 
-          <span className={`font-semibold ${book?.Availability ? 'text-green-500' : 'text-red-500'}`}>
-          {book?.Availability ? ' In stock' : ' Out of stock'}
-          </span>
-        </p> */}
         <p className="text-sm">Publication Date: {book?.PublicationDate}</p>
         <Button variant="default" onClick={() => handleAddProduct(book)}>
-          Add to cart
+          Add to Wishlist
         </Button>
       </div>
     </div>
