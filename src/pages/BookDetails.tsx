@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useDeleteBookMutation, useSingleBookQuery } from '@/Redux/Features/Books/BookApi';
 import ProductReview from '@/components/ProductReview';
@@ -5,10 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import * as Dialog from "@radix-ui/react-dialog";
 import toast, { Toaster } from 'react-hot-toast';
+import { useAppSelector } from '@/Redux/hook';
 
 
 export default function ProductDetails() {
   const { id } = useParams();
+  const  {user} = useAppSelector(state => state.user)
+  console.log(id);
 
   const {data:book} = useSingleBookQuery(id)
 
@@ -16,8 +20,6 @@ export default function ProductDetails() {
 
   //function for update book 
   const [DeleteBook, { data }] = useDeleteBookMutation();
-
-  console.log(data);
 
   // adding a toast 
   if(data?.acknowledged && data.deletedCount > 0){
@@ -45,8 +47,10 @@ export default function ProductDetails() {
           <p className="text-xl">Publication Date: {book?.PublicationDate}</p>
           <Link to={`/edit-book/${id}`}><Button>Edit</Button></Link>
             <Dialog.Root>
-              <Dialog.Trigger>
-                <Button className="mx-2 bg-red-600 hover:bg-red-500">Delete</Button>
+              <Dialog.Trigger disabled={book?.bookOwner !== user?.email ? true : false}>
+                <Button 
+                  disabled={book?.bookOwner !== user?.email ? true : false}
+                 className="mx-2 bg-red-600 hover:bg-red-500">Delete</Button>
               </Dialog.Trigger>
               <Dialog.Portal>
                 <Dialog.Overlay className='fixed inset-0 bg-black/50'>

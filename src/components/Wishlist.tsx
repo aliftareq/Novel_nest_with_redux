@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/Redux/hook';
 import { toggleBookState,removeFromCart } from '@/Redux/Features/wishlist/wishListSlice';
 
 export default function Wishlist() {
-  const  {products, BookState} = useAppSelector(state => state.cart)
+  const  {products} = useAppSelector(state => state.cart)
   const dispatch = useAppDispatch()
   return (
     <Sheet>

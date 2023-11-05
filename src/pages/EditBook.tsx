@@ -13,10 +13,12 @@ import {
 } from "@/components/ui/select"
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import { useAppSelector } from '@/Redux/hook';
 
 export default function EditBook() {
 
   const { id } = useParams();
+  const  {user} = useAppSelector(state => state?.user)
 
   const {data:book} = useSingleBookQuery(id)
 
@@ -139,7 +141,8 @@ export default function EditBook() {
               />
             </div>
             <div className='mt-5 flex justify-center'>
-              <Button type="submit" className='w-1/2 bg-green-400 hover:bg-green-500' variant='outline'>
+              <Button type="submit" className='w-1/2 bg-green-400 hover:bg-green-500' 
+                disabled={book?.bookOwner !== user?.email ? true : false}  variant='outline'>
                 Add
               </Button>
             </div>
